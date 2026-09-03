@@ -1,0 +1,214 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens — Cami Content OS
+ * Direção visual: editorial, feminina, premium e contemporânea.
+ * Ver CLAUDE.md > Direção visual para o racional de cada token.
+ *
+ * Estratégia tipográfica: serifada (--font-serif) em títulos/headlines para
+ * o caráter editorial; pilha de sistema (--font-sans) no corpo do texto,
+ * para legibilidade em telas pequenas. Sem Google Fonts (bloqueado no
+ * sandbox — ver CLAUDE.md).
+ */
+:root {
+  --radius: 0.75rem;
+
+  /* Cores de marca */
+  --brand-rosa: #ff2e88;
+  --brand-laranja: #ff6a3d;
+  --brand-preto: #0b0b0c;
+  --brand-branco: #ffffff;
+  --brand-rosa-claro: #fff4f7;
+  --brand-bege: #f7f1eb;
+
+  /* Tokens semânticos — tema claro (padrão) */
+  --background: var(--brand-branco);
+  --foreground: var(--brand-preto);
+
+  --card: var(--brand-branco);
+  --card-foreground: var(--brand-preto);
+
+  --popover: var(--brand-branco);
+  --popover-foreground: var(--brand-preto);
+
+  --primary: var(--brand-rosa);
+  --primary-foreground: var(--brand-branco);
+
+  --secondary: var(--brand-rosa-claro);
+  --secondary-foreground: var(--brand-preto);
+
+  --accent: var(--brand-laranja);
+  --accent-foreground: var(--brand-branco);
+
+  --muted: var(--brand-bege);
+  --muted-foreground: #6b625a;
+
+  --destructive: #d92d20;
+  --destructive-foreground: var(--brand-branco);
+
+  --border: #f0e4dd;
+  --input: #f0e4dd;
+  --ring: var(--brand-rosa);
+
+  --sidebar: var(--brand-bege);
+  --sidebar-foreground: var(--brand-preto);
+  --sidebar-border: #e9dccf;
+
+  /* Tons de estado, usados por StatusBadge/PriorityBadge — deliberadamente
+     dessaturados para não competir com a paleta de marca. */
+  --tone-neutral-bg: #f1eee9;
+  --tone-neutral-fg: #57504a;
+  --tone-progress-bg: #fff0e8;
+  --tone-progress-fg: #b8501f;
+  --tone-info-bg: #eef2fb;
+  --tone-info-fg: #3a4f8f;
+  --tone-warning-bg: #fdf3d9;
+  --tone-warning-fg: #8a6a10;
+  --tone-success-bg: #e9f5ee;
+  --tone-success-fg: #2f7a52;
+  --tone-danger-bg: #fbeae8;
+  --tone-danger-fg: #b3261e;
+
+  --shadow-color: 11 11 12;
+}
+
+.dark {
+  --background: #121014;
+  --foreground: #f5eeee;
+
+  --card: #1b181c;
+  --card-foreground: #f5eeee;
+
+  --popover: #1b181c;
+  --popover-foreground: #f5eeee;
+
+  --primary: #ff5aa0;
+  --primary-foreground: #1b0611;
+
+  --secondary: #2a1e23;
+  --secondary-foreground: #f5eeee;
+
+  --accent: #ff8a5c;
+  --accent-foreground: #1b0611;
+
+  --muted: #241f22;
+  --muted-foreground: #b3a8a4;
+
+  --destructive: #ff6b61;
+  --destructive-foreground: #1b0611;
+
+  --border: #2e2830;
+  --input: #2e2830;
+  --ring: #ff5aa0;
+
+  --sidebar: #19151a;
+  --sidebar-foreground: #f5eeee;
+  --sidebar-border: #2e2830;
+
+  --tone-neutral-bg: #24202a;
+  --tone-neutral-fg: #cfc7d1;
+  --tone-progress-bg: #33241c;
+  --tone-progress-fg: #ffab7d;
+  --tone-info-bg: #1f2436;
+  --tone-info-fg: #a9bbf5;
+  --tone-warning-bg: #332b12;
+  --tone-warning-fg: #f0cf6b;
+  --tone-success-bg: #17301f;
+  --tone-success-fg: #82d3a4;
+  --tone-danger-bg: #331916;
+  --tone-danger-fg: #ff9b93;
+
+  --shadow-color: 0 0 0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-brand-rosa: var(--brand-rosa);
+  --color-brand-laranja: var(--brand-laranja);
+  --color-brand-preto: var(--brand-preto);
+  --color-brand-branco: var(--brand-branco);
+  --color-brand-rosa-claro: var(--brand-rosa-claro);
+  --color-brand-bege: var(--brand-bege);
+
+  --color-tone-neutral-bg: var(--tone-neutral-bg);
+  --color-tone-neutral-fg: var(--tone-neutral-fg);
+  --color-tone-progress-bg: var(--tone-progress-bg);
+  --color-tone-progress-fg: var(--tone-progress-fg);
+  --color-tone-info-bg: var(--tone-info-bg);
+  --color-tone-info-fg: var(--tone-info-fg);
+  --color-tone-warning-bg: var(--tone-warning-bg);
+  --color-tone-warning-fg: var(--tone-warning-fg);
+  --color-tone-success-bg: var(--tone-success-bg);
+  --color-tone-success-fg: var(--tone-success-fg);
+  --color-tone-danger-bg: var(--tone-danger-bg);
+  --color-tone-danger-fg: var(--tone-danger-fg);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype",
+    "Book Antiqua", Palatino, serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* Escala tipográfica editorial — usada por PageHeader e headings */
+  --text-display: 2.5rem;
+  --text-display--line-height: 1.1;
+  --text-headline: 1.875rem;
+  --text-headline--line-height: 1.2;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.3;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.4;
+
+  --shadow-xs: 0 1px 2px 0 rgb(var(--shadow-color) / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(var(--shadow-color) / 0.06),
+    0 1px 2px -1px rgb(var(--shadow-color) / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(var(--shadow-color) / 0.08),
+    0 2px 4px -2px rgb(var(--shadow-color) / 0.06);
+  --shadow-lg: 0 12px 24px -6px rgb(var(--shadow-color) / 0.1),
+    0 4px 8px -4px rgb(var(--shadow-color) / 0.06);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Fallback de foco visível para elementos que não usam o padrão de ring do
+   Tailwind (ex.: links de navegação simples). Mantém acessibilidade de
+   teclado consistente em todo o app. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
