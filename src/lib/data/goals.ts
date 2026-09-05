@@ -14,6 +14,12 @@ export async function listGoals(
   return unwrap(result);
 }
 
+export async function getGoalsByIds(db: DbClient, ids: string[]): Promise<Goal[]> {
+  if (ids.length === 0) return [];
+  const result = await db.from("goals").select("*").in("id", ids);
+  return unwrap(result);
+}
+
 export async function createGoal(db: DbClient, input: GoalInsert): Promise<Goal> {
   const result = await db.from("goals").insert(input).select().single();
   return unwrap(result);

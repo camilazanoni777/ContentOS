@@ -6,7 +6,7 @@ import type { Database } from "@/types/database";
  * Rotas acessíveis sem sessão autenticada. Qualquer rota fora desta lista é
  * protegida por padrão (o middleware redireciona para /login).
  */
-const PUBLIC_PATHS = ["/", "/login", "/auth/callback", "/auth/auth-code-error"];
+const PUBLIC_PATHS = ["/", "/login", "/auth/callback", "/auth/auth-code-error", "/offline"];
 
 function isPublicPath(pathname: string): boolean {
   return PUBLIC_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
@@ -54,7 +54,7 @@ export async function updateSession(request: NextRequest) {
 
   if (user && pathname === "/login") {
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = "/sessao";
+    redirectUrl.pathname = "/hoje";
     redirectUrl.search = "";
     return NextResponse.redirect(redirectUrl);
   }

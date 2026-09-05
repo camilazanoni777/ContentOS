@@ -4,11 +4,14 @@ Sistema único para gestão da criação de conteúdo no Instagram — da primei
 ideia até a análise do resultado. Ver `CLAUDE.md` para a visão completa do
 produto e as regras de arquitetura, e `TODO.md` para o roadmap por fases.
 
-> Status atual: **Fase 2 — dados, autenticação e segurança.** O schema
-> completo (14 tabelas), RLS por usuário, autenticação por e-mail/senha e a
-> camada de acesso a dados já existem. Ainda não há telas de produto reais
-> (Kanban, calendário, métricas etc.) — apenas login e uma página de
-> verificação de sessão (`/sessao`).
+> Status atual: **Fase 14 — Auditoria, estabilização e PWA concluídas.** O
+> pipeline editorial, planejamento, métricas, metas, revisão, dashboard,
+> alertas e o domínio de negócio, configurações, importação segura e backup
+> têm telas e dados reais; o app funciona como PWA instalável com estado
+> offline honesto (sem fila de mutação offline — escrita é bloqueada
+> quando sem conexão, nunca perdida silenciosamente). Restauração
+> automática de backup, integrações externas e recursos de IA continuam
+> pendentes; veja `TODO.md`.
 
 ## Stack
 
@@ -68,7 +71,7 @@ Detalhes completos sobre o schema, RLS e a camada de dados estão em
 
 ```
 src/
-  app/            # Rotas (App Router) — inclui /login, /sessao, /auth/callback
+  app/            # Rotas (App Router) — inclui /login, /sessao, /auth/callback, /offline
   features/       # Um domínio por pasta (ideias, roteiros, gravacao, auth, ...)
   components/     # ui/ (shadcn/ui), layout/ e feedback/ (loading/empty/error)
   lib/
@@ -77,11 +80,12 @@ src/
     auth/         # Server Actions de autenticação
     validations/  # Schemas Zod compartilhados entre domínios
   types/          # database.ts (gerado/mantido manualmente) e domain.ts
-  providers/      # Composição de providers (TanStack Query, etc.)
+  providers/      # Composição de providers (TanStack Query, PWA, etc.)
   hooks/          # Hooks reutilizáveis
   test/           # Setup do Vitest
+public/           # manifest.webmanifest, ícones (icons/) e service worker (sw.js) do PWA
 supabase/
-  migrations/     # Migrations SQL versionadas (14 tabelas + RLS + triggers)
+  migrations/     # Migrations SQL versionadas (28 tabelas + RLS + triggers)
   tests/          # Testes de integração das migrations (pglite) + shim de auth
   seed.sql        # Seed de desenvolvimento — NUNCA aplicar em produção
 tests/e2e/        # Specs do Playwright
@@ -90,6 +94,19 @@ tests/e2e/        # Specs do Playwright
 Veja `CLAUDE.md` para os padrões de código e as regras de dados do projeto
 (datas em pt-BR, campo não informado é `null`, exclusão é arquivar por
 padrão, RLS obrigatório, etc.).
+
+## PWA (app instalável)
+
+O app é instalável (manifest + service worker, sem biblioteca de
+terceiros). O service worker (`public/sw.js`) só faz cache de assets
+estáticos e do shell da rota — nunca de respostas autenticadas ou dados
+pessoais — e só atualiza quando a usuária confirma no banner de "nova
+versão disponível" (nunca troca a versão em uso sem aviso). Sem conexão,
+`/offline` avisa claramente que a página não pôde carregar e que **nenhuma
+alteração é salva** enquanto o dispositivo estiver offline: não existe fila
+de mutação offline (isso exigiria idempotência e resolução de conflito que
+o app ainda não implementa), então escritas são bloqueadas com uma
+mensagem em vez de fingir que serão sincronizadas depois.
 
 ## Notas sobre o ambiente de desenvolvimento
 

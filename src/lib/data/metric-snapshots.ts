@@ -1,6 +1,6 @@
 import type { DbClient } from "./types";
-import { unwrap } from "./errors";
-import type { MetricSnapshot, MetricSnapshotInsert } from "@/types/domain";
+import { unwrap, unwrapNullable } from "./errors";
+import type { MetricSnapshot, MetricSnapshotInsert, MetricSnapshotUpdate } from "@/types/domain";
 
 export async function listMetricSnapshots(
   db: DbClient,
@@ -10,6 +10,24 @@ export async function listMetricSnapshots(
     .from("metric_snapshots")
     .select("*")
     .eq("content_item_id", contentItemId)
+    .order("captured_at", { ascending: true });
+  return unwrap(result);
+}
+
+export async function getMetricSnapshotById(db: DbClient, id: string): Promise<MetricSnapshot | null> {
+  return unwrapNullable(await db.from("metric_snapshots").select("*").eq("id", id).maybeSingle());
+}
+
+/** Snapshots de vários conteúdos de uma vez (uma query) — usado por Publicados para montar pendências de captura sem N+1. */
+export async function listMetricSnapshotsForItems(
+  db: DbClient,
+  contentItemIds: string[],
+): Promise<MetricSnapshot[]> {
+  if (contentItemIds.length === 0) return [];
+  const result = await db
+    .from("metric_snapshots")
+    .select("*")
+    .in("content_item_id", contentItemIds)
     .order("captured_at", { ascending: true });
   return unwrap(result);
 }
@@ -35,6 +53,21 @@ export async function recordMetricSnapshot(
     .upsert(input, { onConflict: "content_item_id,window_type" })
     .select()
     .single();
+  return unwrap(result);
+}
+
+/**
+ * Atualiza uma captura já existente por id — usado para editar uma leitura
+ * de janela "custom" (que não é upsertável por window_type, já que várias
+ * podem existir para o mesmo conteúdo) e também para reabrir/corrigir uma
+ * leitura de janela fixa já registrada sem depender do upsert.
+ */
+export async function updateMetricSnapshot(
+  db: DbClient,
+  id: string,
+  patch: MetricSnapshotUpdate,
+): Promise<MetricSnapshot> {
+  const result = await db.from("metric_snapshots").update(patch).eq("id", id).select().single();
   return unwrap(result);
 }
 

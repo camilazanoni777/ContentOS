@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { Providers } from "@/providers";
 
@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   title: "Cami Content OS",
   description:
     "Sistema único para criação de conteúdo no Instagram: da ideia à publicação e à análise de resultados.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Content OS",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ff2e88",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

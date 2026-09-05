@@ -70,3 +70,23 @@ export function getPriorityMeta(priority: string | null): PriorityMeta | null {
   const key = priority.trim().toLowerCase() as PriorityLevel;
   return PRIORITY_META[key] ?? { label: priority, icon: Clock, tone: "neutral" };
 }
+
+/**
+ * Rota de "Criar" onde cada status do pipeline é trabalhado — usado para
+ * linkar itens (ex.: "conteúdos planejados para hoje" na página Hoje) para
+ * a página certa sem precisar de uma tela de detalhe própria ainda.
+ */
+export const CONTENT_STATUS_ROUTE: Record<ContentStatus, string> = {
+  idea: "/ideias",
+  researching: "/ideias",
+  scripting: "/roteiros",
+  ready_to_record: "/gravacao",
+  recorded: "/gravacao",
+  editing: "/edicao",
+  awaiting_approval: "/edicao",
+  scheduled: "/agendamento",
+  published: "/publicados",
+  repurpose: "/ideias",
+  archived: "/ideias",
+  canceled: "/ideias",
+};

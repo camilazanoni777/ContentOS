@@ -3,7 +3,7 @@ import { unwrap } from "./errors";
 import type { ContentSeries, ContentSeriesInsert, ContentSeriesUpdate } from "@/types/domain";
 
 export async function listContentSeries(db: DbClient): Promise<ContentSeries[]> {
-  const result = await db.from("content_series").select("*").order("name", { ascending: true });
+  const result = await db.from("content_series").select("*").is("archived_at", null).order("name", { ascending: true });
   return unwrap(result);
 }
 

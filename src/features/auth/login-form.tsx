@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signInWithPassword, signUpWithPassword } from "@/lib/auth/actions";
 import { loginSchema, passwordSchema, type LoginInput } from "@/lib/validations/auth";
+import { safeNextPath } from "@/lib/safe-redirect";
 
 type Modo = "login" | "cadastro";
 
@@ -19,6 +20,7 @@ export function LoginForm() {
   const [signUpSuccess, setSignUpSuccess] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const {
     register,
@@ -55,7 +57,7 @@ export function LoginForm() {
         return;
       }
 
-      router.push("/sessao");
+      router.push(safeNextPath(searchParams.get("proximo")));
       router.refresh();
     });
   }

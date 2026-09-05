@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { PwaProvider } from "./pwa-provider";
 import { QueryProvider } from "./query-provider";
 import { ThemeProvider } from "./theme-provider";
 
@@ -11,7 +12,9 @@ import { ThemeProvider } from "./theme-provider";
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <QueryProvider>{children}</QueryProvider>
+      <QueryProvider>
+        <PwaProvider>{children}</PwaProvider>
+      </QueryProvider>
     </ThemeProvider>
   );
 }

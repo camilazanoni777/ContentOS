@@ -26,6 +26,7 @@ declare
   v_content_a uuid;
   v_content_b uuid;
   v_content_c uuid;
+  v_metric_id uuid;
 begin
   if dev_user_id = '00000000-0000-0000-0000-000000000000' then
     raise exception 'Substitua dev_user_id pelo UUID de um usuário real antes de rodar o seed (veja instruções no topo do arquivo).';
@@ -52,13 +53,19 @@ begin
   values (dev_user_id, '5 erros de posicionamento', 'Série educacional sobre erros comuns de posicionamento no Instagram.')
   returning id into v_series_id;
 
-  insert into public.campaigns (user_id, name, description, status, starts_at, ends_at)
-  values (dev_user_id, 'Lançamento Setembro', 'Campanha de lançamento do novo produto.', 'active', current_date, current_date + interval '30 days')
+  insert into public.campaigns (user_id, name, brand_name, notes, campaign_type, account_id, negotiation_status, contract_status, delivery_status, payment_status, contracted_fee, delivery_due_date)
+  values (dev_user_id, 'Campanha fictícia de setembro', 'Marca Exemplo (fictícia)', 'Dados exclusivamente de desenvolvimento.', 'paid_post', v_account_id, 'approved', 'signed', 'in_production', 'partially_paid', 2000.00, current_date + 30)
   returning id into v_campaign_id;
 
-  insert into public.products (user_id, name, description, price, is_active)
-  values (dev_user_id, 'Mentoria Cami', 'Mentoria individual de posicionamento.', 1200.00, true)
+  insert into public.products (user_id, name, notes, reference_price, status)
+  values (dev_user_id, 'Produto de exemplo', 'Produto fictício para desenvolvimento.', 1200.00, 'active')
   returning id into v_product_id;
+
+  insert into public.campaign_deliverables (user_id, campaign_id, title, quantity, due_date)
+  values (dev_user_id, v_campaign_id, 'Reel patrocinado fictício', 1, current_date + 20);
+
+  insert into public.campaign_payments (user_id, campaign_id, amount, received_amount, received_at, due_date, status, notes)
+  values (dev_user_id, v_campaign_id, 1000.00, 1000.00, now(), current_date, 'paid', 'Primeira parcela fictícia.');
 
   insert into public.content_items (user_id, account_id, title, hook, pillar, format, objective, status, series_id, campaign_id)
   values (
@@ -96,8 +103,12 @@ begin
   insert into public.metric_snapshots (content_item_id, user_id, window_type, views, likes, comments, shares, saves)
   values (v_content_c, dev_user_id, '24h', 4200, 310, 28, 12, 45);
 
-  insert into public.metric_snapshots (content_item_id, user_id, window_type, views, likes, comments, shares, saves, followers_gained)
-  values (v_content_c, dev_user_id, '7d', 9800, 720, 61, 30, 110, 24);
+  insert into public.metric_snapshots (content_item_id, user_id, window_type, views, likes, comments, shares, saves, followers_gained, link_clicks, leads, sales, revenue)
+  values (v_content_c, dev_user_id, '7d', 9800, 720, 61, 30, 110, 24, 120, 18, 3, 3600.00)
+  returning id into v_metric_id;
+
+  insert into public.sales_records (user_id, product_id, content_item_id, metric_snapshot_id, source, sale_date, notes)
+  values (dev_user_id, v_product_id, v_content_c, v_metric_id, 'metric_snapshot', current_date - 5, 'Atribuição fictícia derivada da captura de 7 dias.');
 
   insert into public.profile_snapshots (account_id, user_id, snapshot_date, followers, following, posts_count)
   values (v_account_id, dev_user_id, current_date, 15200, 340, 128);

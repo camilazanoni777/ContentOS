@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  AlertTriangle,
   BarChart3,
   Calendar,
   CalendarCheck,
@@ -7,6 +8,7 @@ import {
   CheckSquare,
   Clapperboard,
   DollarSign,
+  ShoppingBag,
   FileEdit,
   Film,
   LayoutDashboard,
@@ -41,6 +43,7 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: "Hoje", href: "/hoje", icon: SunMedium, mobilePrimary: true },
       { label: "Check-in", href: "/checkin", icon: CheckSquare },
+      { label: "Alertas", href: "/alertas", icon: AlertTriangle },
     ],
   },
   {
@@ -75,6 +78,7 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "Negócio",
     items: [
       { label: "Campanhas", href: "/negocio/campanhas", icon: Megaphone },
+      { label: "Produtos e vendas", href: "/negocio/produtos", icon: ShoppingBag },
       { label: "Receita", href: "/negocio/receita", icon: DollarSign },
     ],
   },

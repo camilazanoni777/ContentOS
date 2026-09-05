@@ -7,6 +7,28 @@ export async function listInstagramAccounts(db: DbClient): Promise<InstagramAcco
   return unwrap(result);
 }
 
+/**
+ * Resolve a conta "ativa" dentro de uma lista já carregada: a marcada como
+ * `is_primary`, senão a mais antiga cadastrada, senão `null`. Função pura
+ * (sem I/O) para reaproveitar quando a lista de contas já foi buscada.
+ */
+export function pickActiveAccount(accounts: InstagramAccount[]): InstagramAccount | null {
+  if (accounts.length === 0) {
+    return null;
+  }
+  return accounts.find((account) => account.is_primary) ?? accounts[0];
+}
+
+/**
+ * Resolve a conta "ativa" para telas que precisam de uma única conta de
+ * contexto (Hoje, Check-in). O seletor de conta na barra superior ainda não
+ * persiste a escolha entre requests — pendência registrada no TODO.md.
+ */
+export async function getActiveAccount(db: DbClient): Promise<InstagramAccount | null> {
+  const accounts = await listInstagramAccounts(db);
+  return pickActiveAccount(accounts);
+}
+
 export async function createInstagramAccount(
   db: DbClient,
   input: InstagramAccountInsert,

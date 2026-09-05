@@ -28,10 +28,10 @@ describe("Sidebar", () => {
     expect(inactiveLink).not.toHaveAttribute("aria-current");
   });
 
-  it("inclui todas as 18 rotas do produto como links navegáveis", () => {
+  it("inclui todas as rotas do produto como links navegáveis", () => {
     render(<Sidebar />);
     const links = screen.getAllByRole("link");
-    // 18 rotas + o link do logo para /hoje.
-    expect(links.length).toBeGreaterThanOrEqual(18);
+    // 19 rotas + o link do logo para /hoje.
+    expect(links.length).toBeGreaterThanOrEqual(19);
   });
 });
