@@ -45,3 +45,6 @@ next-env.d.ts
 /playwright-report/
 /test-results/
 /blob-report/
+
+# temp
+/_to_delete/
