@@ -52,11 +52,6 @@ export function TodayHeader({ greeting, formattedDate, activeAccount }: TodayHea
               <span>Conectar conta</span>
             </Link>
           )}
-
-          <span className="inline-flex items-center gap-1 text-2xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-tone-success-fg" aria-hidden="true" />
-            Sincronizado
-          </span>
         </div>
 
         <h1 className="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">

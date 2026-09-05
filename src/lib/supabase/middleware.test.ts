@@ -41,7 +41,7 @@ describe("middleware de sessão — proteção de rotas (Prompt 14, cenário obr
   it("deixa passar sem sessão em rotas públicas (/, /login, /offline, /auth/callback)", async () => {
     getUserMock.mockResolvedValue({ data: { user: null } });
 
-    for (const path of ["/", "/login", "/offline", "/auth/callback", "/auth/auth-code-error"]) {
+    for (const path of ["/", "/login", "/offline", "/auth/callback", "/auth/auth-code-error", "/api/health"]) {
       const response = await updateSession(makeRequest(path));
       expect(response.status).toBe(200);
     }

@@ -3,21 +3,20 @@
 import * as React from "react";
 
 /**
- * Registra o Service Worker (public/sw.js) e expõe dois avisos honestos ao
- * vivo, sem depender de nenhuma lib de PWA:
- *  - "você está offline": liga/desliga com os eventos online/offline do
- *    navegador — deixa claro que nenhuma escrita é salva nesse estado (não
- *    há fila offline; ver sw.js e CLAUDE.md).
- *  - "nova versão disponível": quando um SW novo fica esperando (updates
- *    controlados — nunca troca de versão sozinho no meio de uma sessão),
- *    oferece um botão para atualizar agora.
+ * Registra o Service Worker (public/sw.js) exclusivamente em produção e
+ * garante a limpeza segura de caches residuais em desenvolvimento.
+ *
+ * Em desenvolvimento:
+ *  - O Service Worker é desativado para evitar que caches antigos interceptem
+ *    o Next.js Fast Refresh ou requisições na porta 3001.
+ *  - Caches específicos do Cami Content OS ("cami-*") são purgados sem tocar
+ *    em caches de outras origens ou aplicações.
+ *
+ * Em produção:
+ *  - Registra o Service Worker e monitora atualizações controladas.
+ *  - Exibe aviso honesto quando o dispositivo está offline (sem fila fantasma).
  */
 
-// `navigator.onLine` só existe no navegador; no servidor assumimos "online"
-// (getServerSnapshot) para casar com o HTML gerado no build/SSR e evitar
-// erro de hidratação — o valor real do cliente é aplicado por
-// useSyncExternalStore logo após a hidratação, sem precisar de um setState
-// dentro de useEffect (que causaria uma renderização extra em cascata).
 function subscribeToOnlineStatus(callback: () => void) {
   window.addEventListener("online", callback);
   window.addEventListener("offline", callback);
@@ -45,7 +44,42 @@ export function PwaProvider({ children }: { children: React.ReactNode }) {
   const [waitingWorker, setWaitingWorker] = React.useState<ServiceWorker | null>(null);
 
   React.useEffect(() => {
-    if (!("serviceWorker" in navigator)) return;
+    if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
+
+    const isDev =
+      process.env.NODE_ENV === "development" ||
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname.endsWith(".local");
+
+    if (isDev) {
+      // 1. Em desenvolvimento: desregistra qualquer Service Worker prévio do app
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((registrations) => {
+          for (const registration of registrations) {
+            registration.unregister();
+          }
+        })
+        .catch(() => undefined);
+
+      // 2. Limpa apenas os caches do Cami Content OS para não afetar outros projetos
+      if ("caches" in window) {
+        caches
+          .keys()
+          .then((names) => {
+            for (const name of names) {
+              if (name.startsWith("cami-")) {
+                caches.delete(name);
+              }
+            }
+          })
+          .catch(() => undefined);
+      }
+      return;
+    }
+
+    // Em PRODUÇÃO: registra o Service Worker
     let cancelled = false;
 
     navigator.serviceWorker
@@ -82,14 +116,25 @@ export function PwaProvider({ children }: { children: React.ReactNode }) {
   return (
     <>
       {isOffline ? (
-        <div role="status" className="bg-[var(--tone-warning-bg)] px-4 py-2 text-center text-sm text-[var(--tone-warning-fg)]">
-          Você está sem conexão. Nenhuma alteração será salva até a internet voltar.
+        <div
+          role="status"
+          className="flex items-center justify-center gap-2 bg-[var(--tone-warning-bg)] px-4 py-2 text-center text-sm font-medium text-[var(--tone-warning-fg)] border-b border-[var(--tone-warning-border)]"
+        >
+          <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" aria-hidden="true" />
+          <span>Você está sem conexão de rede. Nenhuma alteração será salva até a internet voltar.</span>
         </div>
       ) : null}
       {waitingWorker ? (
-        <div role="status" className="flex items-center justify-center gap-3 bg-secondary px-4 py-2 text-center text-sm text-secondary-foreground">
-          Uma nova versão está disponível.
-          <button type="button" onClick={applyUpdate} className="rounded-md bg-primary px-3 py-1 text-primary-foreground">
+        <div
+          role="status"
+          className="flex items-center justify-center gap-3 bg-secondary px-4 py-2 text-center text-sm text-secondary-foreground"
+        >
+          <span>Uma nova versão está disponível.</span>
+          <button
+            type="button"
+            onClick={applyUpdate}
+            className="rounded-md bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 cursor-pointer"
+          >
             Atualizar agora
           </button>
         </div>

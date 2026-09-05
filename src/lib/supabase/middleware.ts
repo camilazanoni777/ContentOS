@@ -6,7 +6,7 @@ import type { Database } from "@/types/database";
  * Rotas acessíveis sem sessão autenticada. Qualquer rota fora desta lista é
  * protegida por padrão (o middleware redireciona para /login).
  */
-const PUBLIC_PATHS = ["/", "/login", "/auth/callback", "/auth/auth-code-error", "/offline", "/preview"];
+const PUBLIC_PATHS = ["/", "/login", "/auth/callback", "/auth/auth-code-error", "/offline", "/preview", "/api/health"];
 
 function isPublicPath(pathname: string): boolean {
   return PUBLIC_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
