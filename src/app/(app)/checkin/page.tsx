@@ -118,8 +118,13 @@ export default async function CheckinPage() {
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
-        title="Check-in"
-        description={`Check-in de @${data.account.handle} — leva menos de 3 minutos. Suas respostas são salvas automaticamente.`}
+        title="Check-in Diário"
+        description={`Ritmo de @${data.account.handle} — planejamento matinal e encerramento noturno. Suas respostas são salvas automaticamente.`}
+        actions={
+          <Button asChild variant="outline" size="sm">
+            <Link href="/hoje">Voltar para Hoje</Link>
+          </Button>
+        }
       />
       <ChecklistSection initialActions={data.actions} />
       <CheckinForm

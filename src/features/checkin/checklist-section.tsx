@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { EyeOff, Plus, RotateCcw } from "lucide-react";
+import { CheckCircle2, EyeOff, Plus, RotateCcw } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -116,37 +116,54 @@ export function ChecklistSection({ initialActions }: ChecklistSectionProps) {
           </div>
         ) : null}
 
-        <ul className="flex flex-col gap-1">
+        {percent === 100 ? (
+          <div className="flex items-center gap-2.5 rounded-lg border border-tone-success-fg/20 bg-tone-success-bg p-3 text-xs text-tone-success-fg font-medium">
+            <CheckCircle2 className="h-4 w-4 shrink-0 text-tone-success-fg" />
+            <span>Excelente trabalho! Todas as tarefas ativas do checklist foram cumpridas hoje.</span>
+          </div>
+        ) : null}
+
+        <ul className="flex flex-col gap-1.5">
           {actions.map((action) => (
             <li
               key={action.id}
-              className={`flex items-center gap-3 rounded-md px-2 py-2 transition-opacity ${action.is_active ? "" : "opacity-50"}`}
+              className={`flex min-h-[48px] items-center gap-3 rounded-xl border border-border/70 bg-card/70 px-3.5 py-2.5 transition-all duration-150 hover:border-primary/30 ${
+                action.is_active ? "" : "opacity-50 bg-muted/20"
+              }`}
             >
-              <Checkbox
-                id={`action-${action.id}`}
-                checked={action.is_done}
-                onCheckedChange={() => handleToggleDone(action)}
-                disabled={pendingIds.has(action.id) || !action.is_active}
-              />
-              <Label htmlFor={`action-${action.id}`} className="flex-1 cursor-pointer text-sm font-normal">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+                <Checkbox
+                  id={`action-${action.id}`}
+                  checked={action.is_done}
+                  onCheckedChange={() => handleToggleDone(action)}
+                  disabled={pendingIds.has(action.id) || !action.is_active}
+                  className="h-5 w-5 rounded-md"
+                />
+              </div>
+              <Label
+                htmlFor={`action-${action.id}`}
+                className={`flex-1 cursor-pointer text-xs sm:text-sm font-medium leading-tight py-1 select-none ${
+                  action.is_done ? "line-through text-muted-foreground" : "text-foreground"
+                }`}
+              >
                 {action.title}
               </Label>
               <Button
                 type="button"
                 variant="ghost"
                 size="sm"
-                className="h-auto gap-1 px-2 py-1 text-xs text-muted-foreground"
+                className="h-8 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
                 onClick={() => handleToggleActive(action)}
                 disabled={pendingIds.has(action.id)}
               >
                 {action.is_active ? (
                   <>
-                    <EyeOff className="h-3 w-3" aria-hidden="true" />
+                    <EyeOff className="h-3.5 w-3.5" aria-hidden="true" />
                     <span className="hidden sm:inline">Não se aplica hoje</span>
                   </>
                 ) : (
                   <>
-                    <RotateCcw className="h-3 w-3" aria-hidden="true" />
+                    <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
                     <span className="hidden sm:inline">Reativar</span>
                   </>
                 )}

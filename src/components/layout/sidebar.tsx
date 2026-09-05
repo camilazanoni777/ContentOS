@@ -19,7 +19,7 @@ export function Sidebar() {
       className="hidden w-64 shrink-0 flex-col gap-6 overflow-y-auto border-r border-sidebar-border bg-sidebar px-4 py-6 md:flex"
     >
       <Link href="/hoje" className="flex items-center gap-2 px-2">
-        <span className="font-serif text-lg font-semibold text-sidebar-foreground">Cami Content OS</span>
+        <span className="font-sans text-lg font-bold tracking-tight text-sidebar-foreground">Cami Content OS</span>
       </Link>
 
       <div className="flex flex-col gap-5">

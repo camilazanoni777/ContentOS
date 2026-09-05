@@ -79,7 +79,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
 function SheetTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
-      className={cn("font-serif text-title font-semibold", className)}
+      className={cn("font-sans text-title font-bold tracking-tight", className)}
       {...props}
     />
   );

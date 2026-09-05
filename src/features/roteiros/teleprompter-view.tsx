@@ -60,7 +60,7 @@ export function TeleprompterView({ title, text, backHref }: TeleprompterViewProp
         const el = scrollRef.current;
         if (el) {
           el.scrollTop += delta;
-          if (el.scrollTop + el.clientHeight >= el.scrollHeight - 1) {
+          if (el.scrollHeight > el.clientHeight && el.scrollTop + el.clientHeight >= el.scrollHeight - 1) {
             setPlaying(false);
           }
         }

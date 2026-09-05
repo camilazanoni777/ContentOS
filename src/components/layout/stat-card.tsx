@@ -38,7 +38,7 @@ export function StatCard({ label, value, helpText, icon, className }: StatCardPr
       <CardContent className="p-5 pt-1">
         <p
           className={cn(
-            "font-serif text-headline font-semibold tracking-tight tabular-nums",
+            "font-sans text-headline font-bold tracking-tight tabular-nums",
             isNullish ? "text-muted-foreground/50 font-normal" : "text-foreground",
           )}
         >

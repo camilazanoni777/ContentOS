@@ -83,4 +83,20 @@ describe("CheckinForm", () => {
 
     expect(await screen.findByText("Não foi possível salvar o fechamento noturno.")).toBeInTheDocument();
   });
+
+  it("permite alternar entre os modos Planejamento e Encerramento preservando os dados digitados", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    render(<CheckinForm {...baseProps()} />);
+
+    // Digita no planejamento
+    await user.type(screen.getByLabelText("Objetivo principal de hoje"), "Gravar 2 reels");
+
+    // Alterna para encerramento
+    await user.click(screen.getByRole("tab", { name: /encerramento \(noite\)/i }));
+    await user.type(screen.getByLabelText("Principal vitória do dia"), "Tudo gravado!");
+
+    // Volta para planejamento e verifica que o objetivo digitado continua lá
+    await user.click(screen.getByRole("tab", { name: /planejamento \(manhã\)/i }));
+    expect(screen.getByLabelText("Objetivo principal de hoje")).toHaveValue("Gravar 2 reels");
+  });
 });

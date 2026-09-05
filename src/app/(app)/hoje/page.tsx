@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import { PageHeader } from "@/components/layout/page-header";
 import { StatCard } from "@/components/layout/stat-card";
 import { ErrorState } from "@/components/feedback/states";
 import { createClient } from "@/lib/supabase/server";
@@ -12,27 +11,30 @@ import { getProfile } from "@/lib/data/profiles";
 import { getAppSettings } from "@/lib/data/app-settings";
 import { listInstagramAccounts, pickActiveAccount } from "@/lib/data/instagram-accounts";
 import { getHojeSummary, type HojeSummary } from "@/lib/data/hoje";
-import { getDailyCheckin } from "@/lib/data/daily-checkins";
+import { getDailyCheckin, listDailyCheckins } from "@/lib/data/daily-checkins";
 import { listDailyActions } from "@/lib/data/daily-actions";
 import { getContentItemById } from "@/lib/data/content-items";
 import { getGoalsByIds } from "@/lib/data/goals";
-import { todayISODate } from "@/lib/dates";
+import { addDaysISO, getWeekRange, todayISODate } from "@/lib/dates";
 import { parseCheckinPriorities } from "@/lib/checkin";
 import { getGreeting } from "@/features/hoje/greeting";
-import { FocusCard } from "@/features/hoje/focus-card";
-import { PrioritiesCard } from "@/features/hoje/priorities-card";
-import { PlannedTodayCard } from "@/features/hoje/planned-today-card";
-import { ActionableCard } from "@/features/hoje/actionable-card";
-import { CheckinCtaCard } from "@/features/hoje/checkin-cta-card";
+import { TodayHeader } from "@/features/hoje/today-header";
+import { DailyFocus } from "@/features/hoje/daily-focus";
+import { TodayContentList } from "@/features/hoje/today-content-list";
+import { AttentionQueue } from "@/features/hoje/attention-queue";
+import { WeeklyRhythm, type WeeklyRhythmDay } from "@/features/hoje/weekly-rhythm";
 import { WelcomeGuide } from "@/features/hoje/welcome-guide";
 import { DataAccessError } from "@/lib/data/errors";
-import type { CheckinPriority, ContentItem, DailyAction, DailyCheckin, Goal } from "@/types/domain";
+import type { CheckinPriority, ContentItem, DailyAction, DailyCheckin, Goal, InstagramAccount } from "@/types/domain";
 
 export const metadata: Metadata = { title: "Hoje — Cami Content OS" };
+
+const DAY_LABELS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 
 interface HojePageData {
   greeting: string;
   formattedDate: string;
+  activeAccount: InstagramAccount | null;
   summary: HojeSummary;
   todayCheckin: DailyCheckin | null;
   todayActions: DailyAction[];
@@ -40,6 +42,7 @@ interface HojePageData {
   priorities: CheckinPriority[];
   contentById: Map<string, ContentItem>;
   goalById: Map<string, Goal>;
+  weeklyRhythmDays: WeeklyRhythmDay[];
 }
 
 /**
@@ -57,8 +60,9 @@ async function loadHojeData(supabase: DbClient, userId: string, today: string): 
 
   const activeAccount = pickActiveAccount(accounts);
   const accountFilter = accounts.length > 1 ? (activeAccount?.id ?? null) : null;
+  const weekRange = getWeekRange(today);
 
-  const [summary, todayCheckin, todayActions] = await Promise.all([
+  const [summary, todayCheckin, todayActions, weeklyCheckins] = await Promise.all([
     getHojeSummary(supabase, {
       userId,
       today,
@@ -67,6 +71,7 @@ async function loadHojeData(supabase: DbClient, userId: string, today: string): 
     }),
     activeAccount ? getDailyCheckin(supabase, activeAccount.id, today) : Promise.resolve(null),
     listDailyActions(supabase, today),
+    activeAccount ? listDailyCheckins(supabase, activeAccount.id, { from: weekRange.start, to: weekRange.end }) : Promise.resolve([]),
   ]);
 
   const priorities = parseCheckinPriorities(todayCheckin?.priorities);
@@ -90,9 +95,25 @@ async function loadHojeData(supabase: DbClient, userId: string, today: string): 
 
   const formattedDateRaw = format(new Date(), "EEEE, d 'de' MMMM", { locale: ptBR });
 
+  const weeklyRhythmDays: WeeklyRhythmDay[] = Array.from({ length: 7 }, (_, i) => {
+    const dateStr = addDaysISO(weekRange.start, i);
+    const checkinForDay = weeklyCheckins.find((c) => c.checkin_date === dateStr);
+    const isToday = dateStr === today;
+    return {
+      date: dateStr,
+      dayLabel: DAY_LABELS[i],
+      dayNumber: dateStr.split("-")[2],
+      isToday,
+      hasCheckin: Boolean(checkinForDay),
+      nightClosed: Boolean(checkinForDay?.night_closed_at),
+      publishedCount: isToday ? summary.publishedTodayCount : 0,
+    };
+  });
+
   return {
-    greeting: `${getGreeting()}, ${profile?.display_name?.trim() || "bem-vinda de volta"}`,
+    greeting: `${getGreeting()}, ${profile?.display_name?.trim() || "Camila"}`,
     formattedDate: formattedDateRaw.charAt(0).toUpperCase() + formattedDateRaw.slice(1),
+    activeAccount,
     summary,
     todayCheckin,
     todayActions,
@@ -100,6 +121,7 @@ async function loadHojeData(supabase: DbClient, userId: string, today: string): 
     priorities,
     contentById,
     goalById,
+    weeklyRhythmDays,
   };
 }
 
@@ -143,8 +165,14 @@ export default async function HojePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <PageHeader title={data.greeting} description={data.formattedDate} />
+      {/* 1. Header do Dia */}
+      <TodayHeader
+        greeting={data.greeting}
+        formattedDate={data.formattedDate}
+        activeAccount={data.activeAccount}
+      />
 
+      {/* Guia inicial quando não há dados cadastrados */}
       {isZeroData ? (
         <WelcomeGuide
           hasCheckinToday={Boolean(data.todayCheckin)}
@@ -153,9 +181,21 @@ export default async function HojePage() {
         />
       ) : null}
 
-      <FocusCard todayObjective={data.todayCheckin?.objective_main ?? null} monthlyGoal={data.summary.monthlyGoal} />
+      {/* 2. Bloco Executivo: Foco e Prioridades do Dia */}
+      <DailyFocus
+        todayObjective={data.todayCheckin?.objective_main ?? null}
+        priorities={data.priorities}
+        contentById={data.contentById}
+        goalById={data.goalById}
+        monthlyGoal={data.summary.monthlyGoal}
+        actions={data.todayActions}
+        hasCheckin={Boolean(data.todayCheckin)}
+        nightClosed={Boolean(data.todayCheckin?.night_closed_at)}
+        nightClosedAt={data.todayCheckin?.night_closed_at ?? null}
+      />
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      {/* 3. Indicadores de Decisão (StatCards em grade responsiva) */}
+      <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-6">
         <StatCard label="Planejados hoje" value={data.summary.plannedTodayCount} />
         <StatCard label="Publicados hoje" value={data.summary.publishedTodayCount} />
         <StatCard label="Atrasados" value={data.summary.overdueCount} />
@@ -164,18 +204,22 @@ export default async function HojePage() {
         <StatCard
           label="Meta semanal"
           value={data.summary.weeklyTarget !== null ? `${data.summary.publishedThisWeekCount}/${data.summary.weeklyTarget}` : null}
-          helpText={data.summary.weeklyPercent !== null ? `${data.summary.weeklyPercent}% executado` : "Defina em Configurações"}
+          helpText={data.summary.weeklyPercent !== null ? `${data.summary.weeklyPercent}% executado` : "Defina em Metas"}
         />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <PrioritiesCard priorities={data.priorities} contentById={data.contentById} goalById={data.goalById} />
-        <CheckinCtaCard hasAccount={data.hasAccount} checkin={data.todayCheckin} actions={data.todayActions} />
-      </div>
+      {/* 4. Ritmo Semanal */}
+      <WeeklyRhythm
+        days={data.weeklyRhythmDays}
+        publishedThisWeek={data.summary.publishedThisWeekCount}
+        weeklyTarget={data.summary.weeklyTarget}
+        weeklyPercent={data.summary.weeklyPercent}
+      />
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <PlannedTodayCard items={data.summary.plannedToday} />
-        <ActionableCard items={data.summary.actionableItems} />
+      {/* 5. Hoje na Pauta & Fila de Atenção */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <TodayContentList items={data.summary.plannedToday} />
+        <AttentionQueue items={data.summary.actionableItems} />
       </div>
     </div>
   );

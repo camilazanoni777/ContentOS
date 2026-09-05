@@ -21,7 +21,7 @@ export function WelcomeGuide({ hasCheckinToday, hasIdeas, hasPlanned }: WelcomeG
             </span>
             <span className="text-xs text-muted-foreground font-medium">Guia Rápido de Produção</span>
           </div>
-          <h2 className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+          <h2 className="font-sans text-xl sm:text-2xl font-bold tracking-tight text-foreground">
             Seu Content OS está pronto. Por onde começar hoje?
           </h2>
           <p className="max-w-2xl text-xs sm:text-sm text-muted-foreground leading-relaxed">

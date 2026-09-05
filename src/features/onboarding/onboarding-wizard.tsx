@@ -232,7 +232,7 @@ export function OnboardingWizard() {
               <Badge variant="accent" className="mx-auto mb-2">
                 Primeiro Acesso
               </Badge>
-              <CardTitle className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              <CardTitle className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                 Boas-vindas ao Cami Content OS
               </CardTitle>
               <CardDescription className="mx-auto max-w-md text-sm text-muted-foreground leading-relaxed pt-1">
@@ -282,9 +282,9 @@ export function OnboardingWizard() {
             <CardHeader className="pb-4">
               <div className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider">
                 <InstagramIcon className="h-4 w-4" />
-                Passo 1 de 3
+                Etapa 2 de 5
               </div>
-              <CardTitle className="font-serif text-2xl font-bold tracking-tight text-foreground">
+              <CardTitle className="font-sans text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                 Conecte seu perfil do Instagram
               </CardTitle>
               <CardDescription className="text-xs text-muted-foreground">
@@ -375,9 +375,9 @@ export function OnboardingWizard() {
             <CardHeader className="pb-4">
               <div className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider">
                 <Layers className="h-4 w-4" />
-                Passo 2 de 3
+                Etapa 3 de 5
               </div>
-              <CardTitle className="font-serif text-2xl font-bold tracking-tight text-foreground">
+              <CardTitle className="font-sans text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                 Defina seus pilares de conteúdo
               </CardTitle>
               <CardDescription className="text-xs text-muted-foreground">
@@ -511,9 +511,9 @@ export function OnboardingWizard() {
             <CardHeader className="pb-4">
               <div className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider">
                 <Lightbulb className="h-4 w-4" />
-                Passo 3 de 3 (Opcional)
+                Etapa 4 de 5 (Opcional)
               </div>
-              <CardTitle className="font-serif text-2xl font-bold tracking-tight text-foreground">
+              <CardTitle className="font-sans text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                 Cadastre sua primeira ideia
               </CardTitle>
               <CardDescription className="text-xs text-muted-foreground">
@@ -628,7 +628,7 @@ export function OnboardingWizard() {
               <Badge variant="secondary" className="mx-auto mb-2 text-tone-success-fg">
                 Configuração Concluída
               </Badge>
-              <CardTitle className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              <CardTitle className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                 Tudo pronto para começar!
               </CardTitle>
               <CardDescription className="mx-auto max-w-md text-sm text-muted-foreground leading-relaxed pt-1">
