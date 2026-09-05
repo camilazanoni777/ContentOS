@@ -1,0 +1,770 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-05T02:01:14.762Z",
+  "owner": {
+    "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+    "account_id": "18947dd7-31aa-4c9c-b24f-a904e88b3c15"
+  },
+  "entities": {
+    "app_settings": [
+      {
+        "id": "e5c72972-9f02-4ee2-92d1-c4f7e2558938",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "timezone": "America/Sao_Paulo",
+        "pillars": [
+          "Autoridade & Posicionamento",
+          "Growth & Alcance",
+          "ACEITE-BETA Pilar Custom"
+        ],
+        "formats": [
+          "Reel",
+          "Carrossel",
+          "Foto",
+          "Stories",
+          "Live"
+        ],
+        "objectives": [
+          "alcance",
+          "viralização",
+          "compartilhamentos",
+          "engajamento",
+          "crescimento de seguidores",
+          "comunidade",
+          "autoridade",
+          "tráfego",
+          "leads",
+          "vendas",
+          "entretenimento"
+        ],
+        "ctas": [],
+        "weekly_publish_target": 0,
+        "extra": {},
+        "created_at": "2026-09-05T01:47:44.934696+00:00",
+        "updated_at": "2026-09-05T01:58:07.867153+00:00",
+        "priorities": [
+          "alta",
+          "media",
+          "baixa"
+        ],
+        "stalled_idea_days": 45,
+        "minimum_ideas_per_pillar": 3
+      }
+    ],
+    "instagram_accounts": [
+      {
+        "id": "18947dd7-31aa-4c9c-b24f-a904e88b3c15",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "handle": "camizanoni.beta",
+        "display_name": "ACEITE-BETA-20260904 Conta A",
+        "is_primary": true,
+        "connected_at": "2026-09-05T01:51:44.926+00:00",
+        "created_at": "2026-09-05T01:51:44.479712+00:00",
+        "updated_at": "2026-09-05T01:51:44.479712+00:00"
+      },
+      {
+        "id": "4e0840d2-00ce-4eac-b004-3c55686135f6",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "handle": "camizanoni.secundaria",
+        "display_name": "ACEITE-BETA Conta B",
+        "is_primary": false,
+        "connected_at": "2026-09-05T01:58:53.223+00:00",
+        "created_at": "2026-09-05T01:58:52.775428+00:00",
+        "updated_at": "2026-09-05T01:58:52.775428+00:00"
+      }
+    ],
+    "content_series": [],
+    "campaigns": [
+      {
+        "id": "c159ecf3-b73a-4bd1-a84a-1c79d0735fb9",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "name": "ACEITE-BETA Campanha Parceria X",
+        "description": null,
+        "starts_at": null,
+        "ends_at": null,
+        "created_at": "2026-09-05T02:00:35.518232+00:00",
+        "updated_at": "2026-09-05T02:00:35.518232+00:00",
+        "brand_name": "Marca de Teste",
+        "contact_name": null,
+        "contact_email": null,
+        "contact_phone": null,
+        "contact_notes": null,
+        "first_contact_date": null,
+        "campaign_type": "other",
+        "account_id": null,
+        "delivery_due_date": null,
+        "published_at": null,
+        "contracted_fee": 2500,
+        "currency": "BRL",
+        "negotiation_status": "approved",
+        "contract_status": "signed",
+        "delivery_status": "in_production",
+        "payment_status": "awaiting_payment",
+        "expected_payment_date": null,
+        "briefing_url": null,
+        "contract_url": null,
+        "folder_url": null,
+        "publication_url": null,
+        "responsible_name": null,
+        "notes": null,
+        "archived_at": null
+      }
+    ],
+    "products": [
+      {
+        "id": "81961285-add5-43db-856f-3028c8b06810",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "name": "ACEITE-BETA Produto Mentoria",
+        "description": null,
+        "reference_price": 997,
+        "created_at": "2026-09-05T01:59:49.431655+00:00",
+        "updated_at": "2026-09-05T01:59:49.431655+00:00",
+        "status": "active",
+        "notes": null,
+        "archived_at": null
+      }
+    ],
+    "content_items": [
+      {
+        "id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "account_id": null,
+        "title": "ACEITE-BETA-20260904-2250 Ideia Pipeline Completo",
+        "hook": "Você está cometendo este erro gravíssimo no Instagram (versão roteiro).",
+        "summary": null,
+        "script": null,
+        "caption": "Legenda de teste do Gate de Aceite 2.2 #content #beta",
+        "format": null,
+        "pillar": "ACEITE-BETA Pilar Custom",
+        "objective": null,
+        "cta": "Comente AUDITORIA para receber o checklist",
+        "priority": null,
+        "status": "published",
+        "potential": null,
+        "production_ease": null,
+        "series_id": null,
+        "reference_text": null,
+        "reference_url": null,
+        "audience_intent": null,
+        "planned_at": null,
+        "production_due_at": null,
+        "scheduled_at": "2026-09-06T01:58:35.519+00:00",
+        "published_at": "2026-09-05T01:58:37.571+00:00",
+        "published_url": null,
+        "campaign_id": null,
+        "product_id": null,
+        "source_content_id": null,
+        "recording_notes": null,
+        "editing_notes": null,
+        "cover_notes": null,
+        "created_at": "2026-09-05T01:56:52.857491+00:00",
+        "updated_at": "2026-09-05T01:58:37.131199+00:00",
+        "archived_at": null,
+        "can_be_series": false,
+        "notes": null,
+        "tags": [],
+        "hook_variations": [],
+        "script_structure": [],
+        "on_screen_text": null,
+        "shot_list": [],
+        "estimated_duration_seconds": null,
+        "script_checklist": {
+          "cta": false,
+          "delivery": false,
+          "strong_hook": false,
+          "clear_promise": false,
+          "proof_example": false,
+          "objective_coherence": false
+        },
+        "raw_file_url": null,
+        "edited_file_url": null,
+        "editor_name": null,
+        "edit_visual_references": [],
+        "edit_cuts_notes": null,
+        "edit_on_screen_text_notes": null,
+        "edit_captions_notes": null,
+        "edit_audio_notes": null,
+        "recording_checklist": {},
+        "edit_checklist": {},
+        "hashtags": [],
+        "cover_image_url": null,
+        "scheduling_checklist": {}
+      }
+    ],
+    "content_status_history": [
+      {
+        "id": "2e2ed44c-47d5-4e2e-9865-fb0b500f1c09",
+        "content_item_id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "previous_status": null,
+        "new_status": "idea",
+        "changed_at": "2026-09-05T01:56:52.857491+00:00"
+      },
+      {
+        "id": "f5252da9-55a8-43e6-9599-6491ca826504",
+        "content_item_id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "previous_status": "idea",
+        "new_status": "scripting",
+        "changed_at": "2026-09-05T01:58:28.253602+00:00"
+      },
+      {
+        "id": "1101f407-3a6d-4d00-bb26-51c7d4d2a309",
+        "content_item_id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "previous_status": "scripting",
+        "new_status": "scheduled",
+        "changed_at": "2026-09-05T01:58:35.082563+00:00"
+      },
+      {
+        "id": "ef42d136-5684-447a-a56e-88115ad6d845",
+        "content_item_id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "previous_status": "scheduled",
+        "new_status": "published",
+        "changed_at": "2026-09-05T01:58:37.131199+00:00"
+      }
+    ],
+    "metric_snapshots": [
+      {
+        "id": "8faa7e48-bc2f-4264-89e6-3f5d0b992bd4",
+        "content_item_id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "window_type": "24h",
+        "window_start": null,
+        "window_end": null,
+        "captured_at": "2026-09-05T02:00:17.826+00:00",
+        "views": 1850,
+        "reach": 1420,
+        "impressions": 2100,
+        "likes": 145,
+        "comments": 28,
+        "shares": 34,
+        "saves": 52,
+        "replies": null,
+        "profile_visits": null,
+        "followers_gained": null,
+        "link_clicks": null,
+        "leads": null,
+        "sales": null,
+        "revenue": null,
+        "average_watch_time_seconds": null,
+        "video_duration_seconds": null,
+        "three_second_views": null,
+        "completed_views": null,
+        "retention_rate": null,
+        "story_exits": null,
+        "taps_forward": null,
+        "taps_back": null,
+        "created_at": "2026-09-05T02:00:17.390653+00:00"
+      }
+    ],
+    "profile_snapshots": [],
+    "daily_checkins": [
+      {
+        "id": "a6131642-1da0-44af-8406-18f8ddea9f10",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_date": "2026-09-04",
+        "evening_wins": null,
+        "evening_blockers": null,
+        "created_at": "2026-09-05T01:56:41.881209+00:00",
+        "updated_at": "2026-09-05T01:56:48.109482+00:00",
+        "account_id": "18947dd7-31aa-4c9c-b24f-a904e88b3c15",
+        "objective_main": "ACEITE-BETA-20260904-2250 Objetivo: Gravar reel principal e revisar stories",
+        "priorities": [
+          {
+            "label": "ACEITE-BETA Prioridade 1",
+            "goalId": null,
+            "contentItemId": null
+          }
+        ],
+        "main_content_item_id": null,
+        "planned_stories": "Sequência de 5 stories demonstrando bastidores.",
+        "focus_product_id": null,
+        "focus_campaign_id": null,
+        "observed_trend": null,
+        "community_action": "Responder 10 DMs de seguidoras.",
+        "notes": null,
+        "daily_learning": "Excelente engajamento e ritmo produtivo.",
+        "tomorrow_priority": null,
+        "night_closed_at": "2026-09-05T01:56:47.646+00:00"
+      }
+    ],
+    "daily_actions": [
+      {
+        "id": "edb9bf2f-66a9-4d7c-975d-6b36265f3460",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Gravei conteúdo",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "46e8ac86-cc9e-4da8-ba80-bb21001ab522",
+        "is_active": true,
+        "sort_order": 0
+      },
+      {
+        "id": "a47b4839-0a9a-4a14-a39e-7ac445aecaba",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Publiquei o conteúdo principal",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "bf817d17-977f-4302-88f7-1090a6b01c1d",
+        "is_active": true,
+        "sort_order": 1
+      },
+      {
+        "id": "083b1c16-b025-4cd5-853b-3000464551c1",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Postei stories",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "f914b061-d7b7-4f91-8815-d430475af939",
+        "is_active": true,
+        "sort_order": 2
+      },
+      {
+        "id": "bb0b9aa0-e01b-47ab-9ac6-3ee9f092675c",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Respondi comentários",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "16de5a8f-e39a-4d32-807e-b5af0a2fb0c0",
+        "is_active": true,
+        "sort_order": 3
+      },
+      {
+        "id": "d0142621-e885-4111-b910-d141b3f1afe2",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Respondi directs",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "4ef2c8f4-eefe-47b2-84d8-e69e36abb7fc",
+        "is_active": true,
+        "sort_order": 4
+      },
+      {
+        "id": "e2d18b79-ad50-4f8a-8455-0a0ca4bd2552",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Interagi com a comunidade",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "3d1c5d8d-cb6d-4b12-98b8-bd982fba715e",
+        "is_active": true,
+        "sort_order": 5
+      },
+      {
+        "id": "a2c810ca-248d-4beb-8792-ff8c92dc4b6b",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Atualizei métricas",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "ee14cea8-5ef4-431b-8381-7dcc501bb48e",
+        "is_active": true,
+        "sort_order": 6
+      },
+      {
+        "id": "45f7a0eb-90ce-4f07-8c7a-ed6332580292",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Capturei novas ideias",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "a935fc66-82b0-4da0-9e20-82787ed9eefe",
+        "is_active": true,
+        "sort_order": 7
+      },
+      {
+        "id": "6142bad1-ee55-440a-8573-a1a6b081fc0c",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "checkin_id": null,
+        "action_date": "2026-09-04",
+        "title": "Trabalhei em campanha/produto",
+        "is_done": false,
+        "completed_at": null,
+        "created_at": "2026-09-05T01:56:38.808625+00:00",
+        "updated_at": "2026-09-05T01:56:38.808625+00:00",
+        "checklist_item_id": "90ed8568-3532-4d73-b330-ebac7102fbd3",
+        "is_active": true,
+        "sort_order": 8
+      }
+    ],
+    "checklist_items": [
+      {
+        "id": "46e8ac86-cc9e-4da8-ba80-bb21001ab522",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Gravei conteúdo",
+        "sort_order": 0,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "bf817d17-977f-4302-88f7-1090a6b01c1d",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Publiquei o conteúdo principal",
+        "sort_order": 1,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "f914b061-d7b7-4f91-8815-d430475af939",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Postei stories",
+        "sort_order": 2,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "16de5a8f-e39a-4d32-807e-b5af0a2fb0c0",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Respondi comentários",
+        "sort_order": 3,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "4ef2c8f4-eefe-47b2-84d8-e69e36abb7fc",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Respondi directs",
+        "sort_order": 4,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "3d1c5d8d-cb6d-4b12-98b8-bd982fba715e",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Interagi com a comunidade",
+        "sort_order": 5,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "ee14cea8-5ef4-431b-8381-7dcc501bb48e",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Atualizei métricas",
+        "sort_order": 6,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "a935fc66-82b0-4da0-9e20-82787ed9eefe",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Capturei novas ideias",
+        "sort_order": 7,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      },
+      {
+        "id": "90ed8568-3532-4d73-b330-ebac7102fbd3",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "label": "Trabalhei em campanha/produto",
+        "sort_order": 8,
+        "is_active": true,
+        "created_at": "2026-09-05T01:54:42.431861+00:00",
+        "updated_at": "2026-09-05T01:54:42.431861+00:00"
+      }
+    ],
+    "goals": [
+      {
+        "id": "516c14ac-4aaa-4353-9c2d-7230f56f458a",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "period_type": "weekly",
+        "period_start": "2026-09-01",
+        "metric": "conteudos_publicados",
+        "target_value": 3,
+        "achieved_value": null,
+        "notes": null,
+        "created_at": "2026-09-05T01:59:48.88563+00:00",
+        "updated_at": "2026-09-05T01:59:48.88563+00:00",
+        "period_end": "2026-09-07",
+        "initial_value": null
+      }
+    ],
+    "weekly_reviews": [],
+    "content_script_versions": [
+      {
+        "id": "06d40703-a32c-4684-8ac0-413766022c64",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "content_item_id": "0b9c75db-b23c-4011-b24f-de5af0d2cb0b",
+        "snapshot": {
+          "hook": "Você está cometendo este erro gravíssimo no Instagram (versão roteiro).",
+          "script": null,
+          "caption": null,
+          "shotList": [],
+          "onScreenText": null,
+          "hookVariations": [],
+          "scriptStructure": [],
+          "estimatedDurationSeconds": null
+        },
+        "created_at": "2026-09-05T01:58:33.447034+00:00"
+      }
+    ],
+    "recording_sessions": [],
+    "recording_session_items": [],
+    "content_review_comments": [],
+    "calendar_important_dates": [],
+    "campaign_deliverables": [],
+    "campaign_payments": [],
+    "sales_records": [],
+    "alert_dismissals": [],
+    "taxonomy_options": [
+      {
+        "id": "b3147ffe-760b-41f0-91ae-3a461cb8ae24",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "pillar",
+        "value": "Autoridade & Posicionamento",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:33.722378+00:00",
+        "updated_at": "2026-09-05T01:54:33.722378+00:00"
+      },
+      {
+        "id": "f15fa104-c496-48d3-bc04-2b4ec2690f25",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "pillar",
+        "value": "Growth & Alcance",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:34.008922+00:00",
+        "updated_at": "2026-09-05T01:54:34.008922+00:00"
+      },
+      {
+        "id": "b5c7e3f5-21c0-4c75-9f3c-6061f3184d49",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "pillar",
+        "value": "ACEITE-BETA Pilar Custom",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:34.272164+00:00",
+        "updated_at": "2026-09-05T01:54:34.272164+00:00"
+      },
+      {
+        "id": "3e3d1020-f0b0-4687-9197-57b81baeb120",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "format",
+        "value": "Reel",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:34.520869+00:00",
+        "updated_at": "2026-09-05T01:54:34.520869+00:00"
+      },
+      {
+        "id": "1c17419a-cd22-45a4-87b9-1ef7d6f7d474",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "format",
+        "value": "Carrossel",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:34.765613+00:00",
+        "updated_at": "2026-09-05T01:54:34.765613+00:00"
+      },
+      {
+        "id": "3ec49871-0a21-4308-a788-96ff2a8fbe1e",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "format",
+        "value": "Foto",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:35.010525+00:00",
+        "updated_at": "2026-09-05T01:54:35.010525+00:00"
+      },
+      {
+        "id": "82c60319-0a00-400b-ace6-d05b671f4e1f",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "format",
+        "value": "Stories",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:35.243868+00:00",
+        "updated_at": "2026-09-05T01:54:35.243868+00:00"
+      },
+      {
+        "id": "469dfc79-41c9-494a-8249-0c6dee41550e",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "format",
+        "value": "Live",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:35.498634+00:00",
+        "updated_at": "2026-09-05T01:54:35.498634+00:00"
+      },
+      {
+        "id": "77362d27-2e77-4d03-be77-674cacc4c37d",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "alcance",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:35.743836+00:00",
+        "updated_at": "2026-09-05T01:54:35.743836+00:00"
+      },
+      {
+        "id": "3993ae08-d4ae-4930-8ba2-74f3c8058f51",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "viralização",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:35.996277+00:00",
+        "updated_at": "2026-09-05T01:54:35.996277+00:00"
+      },
+      {
+        "id": "2506ac68-ec30-4a24-9a61-3acd7e58aa5c",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "compartilhamentos",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:36.236473+00:00",
+        "updated_at": "2026-09-05T01:54:36.236473+00:00"
+      },
+      {
+        "id": "8b79218a-5b6d-456f-9792-7be50fb6d546",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "engajamento",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:36.465012+00:00",
+        "updated_at": "2026-09-05T01:54:36.465012+00:00"
+      },
+      {
+        "id": "d43eac79-03a8-425c-812a-2a6abb4408d1",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "crescimento de seguidores",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:36.68763+00:00",
+        "updated_at": "2026-09-05T01:54:36.68763+00:00"
+      },
+      {
+        "id": "416bd9e1-efe7-4060-9cdf-24c9f226ce9e",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "comunidade",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:36.989377+00:00",
+        "updated_at": "2026-09-05T01:54:36.989377+00:00"
+      },
+      {
+        "id": "291d8882-7925-4f3f-93ef-577d30e2f410",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "autoridade",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:37.232848+00:00",
+        "updated_at": "2026-09-05T01:54:37.232848+00:00"
+      },
+      {
+        "id": "ff628dee-098d-4f58-9561-dd087b37361a",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "tráfego",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:37.477162+00:00",
+        "updated_at": "2026-09-05T01:54:37.477162+00:00"
+      },
+      {
+        "id": "9d51485f-bd20-4417-851d-397ec6635b07",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "leads",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:37.726028+00:00",
+        "updated_at": "2026-09-05T01:54:37.726028+00:00"
+      },
+      {
+        "id": "5943c2d0-8478-4397-8f79-638f9d89dff3",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "vendas",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:38.406979+00:00",
+        "updated_at": "2026-09-05T01:54:38.406979+00:00"
+      },
+      {
+        "id": "fa64414a-180a-421e-9b37-10b33d6c939e",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "objective",
+        "value": "entretenimento",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:38.678821+00:00",
+        "updated_at": "2026-09-05T01:54:38.678821+00:00"
+      },
+      {
+        "id": "f93d07a9-fe7d-4f5a-854d-5abfdd2f6553",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "priority",
+        "value": "alta",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:38.919149+00:00",
+        "updated_at": "2026-09-05T01:54:38.919149+00:00"
+      },
+      {
+        "id": "e50422cb-1aba-47b7-8e58-93d3e0a8ec10",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "priority",
+        "value": "media",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:39.14556+00:00",
+        "updated_at": "2026-09-05T01:54:39.14556+00:00"
+      },
+      {
+        "id": "8e3f772e-04e2-4562-a00a-d3b2a49cfcf0",
+        "user_id": "41645077-9184-4ffe-8fc1-761b72810e5b",
+        "kind": "priority",
+        "value": "baixa",
+        "is_system": false,
+        "archived_at": null,
+        "created_at": "2026-09-05T01:54:39.378444+00:00",
+        "updated_at": "2026-09-05T01:54:39.378444+00:00"
+      }
+    ],
+    "taxonomy_change_audit": []
+  }
+}

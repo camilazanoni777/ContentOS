@@ -29,13 +29,15 @@ export default async function OnboardingPage() {
   }
 
   // Se o usuário já tiver conta configurada, direciona para o painel principal
+  let accounts: Awaited<ReturnType<typeof listInstagramAccounts>> = [];
   try {
-    const accounts = await listInstagramAccounts(supabase);
-    if (accounts.length > 0) {
-      redirect("/hoje");
-    }
+    accounts = await listInstagramAccounts(supabase);
   } catch {
     // Se a leitura falhar, permite continuar no onboarding
+  }
+
+  if (accounts.length > 0) {
+    redirect("/hoje");
   }
 
   return (
