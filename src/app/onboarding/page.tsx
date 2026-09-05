@@ -1,0 +1,71 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { LogOut } from "lucide-react";
+
+import { createClient } from "@/lib/supabase/server";
+import { listInstagramAccounts } from "@/lib/data/instagram-accounts";
+import { signOut } from "@/lib/auth/actions";
+import { OnboardingWizard } from "@/features/onboarding/onboarding-wizard";
+
+export const metadata: Metadata = {
+  title: "Onboarding — Cami Content OS",
+  description: "Configure seu perfil e seus pilares editoriais para começar.",
+};
+
+export default async function OnboardingPage() {
+  let supabase;
+  try {
+    supabase = await createClient();
+  } catch {
+    redirect("/login");
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login?proximo=/onboarding");
+  }
+
+  // Se o usuário já tiver conta configurada, direciona para o painel principal
+  try {
+    const accounts = await listInstagramAccounts(supabase);
+    if (accounts.length > 0) {
+      redirect("/hoje");
+    }
+  } catch {
+    // Se a leitura falhar, permite continuar no onboarding
+  }
+
+  return (
+    <main className="flex min-h-svh flex-col bg-background">
+      {/* Barra de Topo do Onboarding */}
+      <header className="flex h-16 shrink-0 items-center justify-between border-b border-border/70 px-6 sm:px-10">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-serif font-bold text-sm shadow-2xs">
+            C
+          </div>
+          <span className="font-serif font-semibold tracking-tight text-foreground text-sm">
+            Cami Content OS
+          </span>
+        </div>
+
+        <form action={signOut}>
+          <button
+            type="submit"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+          >
+            <LogOut className="h-3.5 w-3.5" />
+            <span>Sair</span>
+          </button>
+        </form>
+      </header>
+
+      {/* Conteúdo Central */}
+      <div className="flex flex-1 items-center justify-center p-4 sm:p-8 lg:p-12">
+        <OnboardingWizard />
+      </div>
+    </main>
+  );
+}

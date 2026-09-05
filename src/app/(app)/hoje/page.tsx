@@ -24,6 +24,7 @@ import { PrioritiesCard } from "@/features/hoje/priorities-card";
 import { PlannedTodayCard } from "@/features/hoje/planned-today-card";
 import { ActionableCard } from "@/features/hoje/actionable-card";
 import { CheckinCtaCard } from "@/features/hoje/checkin-cta-card";
+import { WelcomeGuide } from "@/features/hoje/welcome-guide";
 import { DataAccessError } from "@/lib/data/errors";
 import type { CheckinPriority, ContentItem, DailyAction, DailyCheckin, Goal } from "@/types/domain";
 
@@ -134,9 +135,23 @@ export default async function HojePage() {
     return <ErrorState title="Algo deu errado ao carregar Hoje" description={loadError ?? undefined} />;
   }
 
+  const isZeroData =
+    !data.todayCheckin &&
+    data.summary.plannedTodayCount === 0 &&
+    data.summary.publishedTodayCount === 0 &&
+    data.summary.actionableItems.length === 0;
+
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={data.greeting} description={data.formattedDate} />
+
+      {isZeroData ? (
+        <WelcomeGuide
+          hasCheckinToday={Boolean(data.todayCheckin)}
+          hasIdeas={data.summary.actionableItems.length > 0}
+          hasPlanned={data.summary.plannedTodayCount > 0}
+        />
+      ) : null}
 
       <FocusCard todayObjective={data.todayCheckin?.objective_main ?? null} monthlyGoal={data.summary.monthlyGoal} />
 

@@ -37,8 +37,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   try {
     accounts = await listInstagramAccounts(supabase);
   } catch {
-    // Se a leitura falhar, seguimos com a lista vazia — o AccountSwitcher já
-    // lida com "nenhuma conta" sem quebrar o restante da navegação.
+    // Se a leitura falhar, seguimos com a lista vazia
+  }
+
+  if (accounts.length === 0) {
+    redirect("/onboarding");
   }
 
   return <AppShell accounts={accounts}>{children}</AppShell>;
